@@ -73,15 +73,14 @@ export default Navbar;
 
 const Container = styled.div`
     .scrolled {
-        background-color: white;
+        background-color: black;
     }
     nav {
-        position: sticky;
         top: 0;
         height: 6.5rem;
         width: 100%;
         justify-content: space-between;
-        position: fiexed;
+        position: fixed;
         z-index: 2;
         align-items: center;
         transition: 0.3s ease-in-out;
