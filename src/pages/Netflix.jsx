@@ -5,7 +5,9 @@ import MovieLogo from '../assets/homeTitle.webp';
 import background from '../assets/home.jpg';
 import { BsFillPlayCircleFill } from 'react-icons/bs';
 import { BiSolidInfoCircle } from 'react-icons/bi'
+import { useNavigate } from 'react-router-dom';
 function Netflix(props) {
+    const navigate = useNavigate();
     const [isScrolled, setIsScrolled] = useState(false);
 
     window.onscroll = () => {
@@ -23,7 +25,7 @@ function Netflix(props) {
                         <img src={MovieLogo} alt="Movie Logo" />
                     </div>
                     <div className="buttons flex">
-                        <button className="flex j-center a-center">
+                        <button className="flex j-center a-center" onClick={() => navigate('/player')}>
                             {<BsFillPlayCircleFill />}Play
                         </button>
                         <button className="flex j-center a-center">
