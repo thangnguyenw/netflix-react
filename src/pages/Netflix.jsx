@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import MovieLogo from '../assets/homeTitle.webp';
 import background from '../assets/home.jpg';
 import { BsFillPlayCircleFill } from 'react-icons/bs';
 import { BiSolidInfoCircle } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useNavigation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMovies, getGeners } from '../store';
+import Slider from '../components/Slider';
+
 function Netflix(props) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [isScrolled, setIsScrolled] = useState(false);
+    const { genresLoaded, movies, genres } = useSelector((state) => state.netflix);
 
+    useEffect(() => {
+        dispatch(getGeners());
+    }, []);
+
+    useEffect(() => {
+        if (genresLoaded) {
+            dispatch(fetchMovies());
+        }
+    }, [genresLoaded]);
     window.onscroll = () => {
         setIsScrolled(window.scrollY === 0 ? false : true);
         return () => (window.onscroll = null);
